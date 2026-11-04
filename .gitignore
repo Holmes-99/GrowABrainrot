@@ -1,0 +1,21 @@
+# Roblox Studio lock and backup files
+*.rbxl.lock
+*.rbxlx.lock
+*.rbxm.lock
+*_AutoRecovery_*.rbxl
+*_AutoRecovery_*.rbxlx
+
+# Rojo / tooling output
+sourcemap.json
+/build/
+*.rbxlx
+
+# Local scratch (raw renders, drafts)
+/_extras/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
