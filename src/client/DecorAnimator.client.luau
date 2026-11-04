@@ -7,6 +7,8 @@
       - Float:   the body hovers above its plinth and turns a little side to side
       - Bob:     a gentle wobble, like the potion is bubbling
       - Wild:    the same wobble, but much stronger
+      - Spin:    hovers and turns all the way round, like a prize on show
+      - Halo:    the body sways a little while any halo part floats and spins above it
     Only the "Body" model moves. The Footprint part (the model's PrimaryPart, moved by the server
     when the decoration is placed or moved) is the anchor every pose is built from.
 ]]
@@ -35,7 +37,7 @@ local function rig(model)
     for _, p in body:GetDescendants() do
         if p:IsA("BasePart") then
             local n = p.Name:lower()
-            table.insert(r.parts, { part = p, offset = base:ToObjectSpace(p.CFrame), tentacle = n:find("tentacle") ~= nil })
+            table.insert(r.parts, { part = p, offset = base:ToObjectSpace(p.CFrame), tentacle = n:find("tentacle") ~= nil, halo = n:find("halo") ~= nil })
         end
     end
     rigs[model] = r
@@ -97,6 +99,20 @@ RunService.Heartbeat:Connect(function()
         elseif r.kind == "Float" then
             local pose = base * CFrame.new(0, sin(t * 1.2) * 0.8, 0) * CFrame.Angles(sin(t * 0.9) * 0.04, sin(t * 0.5) * 0.25, 0)
             for _, e in r.parts do e.part.CFrame = pose * e.offset end
+        elseif r.kind == "Spin" then
+            local pose = base * CFrame.new(0, sin(t * 1.2) * 0.6, 0) * CFrame.Angles(0, t * 0.6, 0)
+            for _, e in r.parts do e.part.CFrame = pose * e.offset end
+        elseif r.kind == "Halo" then
+            local pose = base * CFrame.Angles(0, sin(t * 0.8) * 0.04, sin(t * 1.2) * 0.02)
+            for _, e in r.parts do
+                if e.halo then
+                    -- spin around the world up axis through the halo's own centre
+                    local c = base * e.offset
+                    e.part.CFrame = CFrame.new(c.Position + Vector3.new(0, sin(t * 1.5) * 0.5, 0)) * CFrame.Angles(0, t * 0.8, 0) * c.Rotation
+                else
+                    e.part.CFrame = pose * e.offset
+                end
+            end
         else
             local k = WOBBLE[r.kind] or 0.6
             local pose = base * CFrame.new(sin(t * 1.1) * 0.25 * k, (sin(t * 1.5) + 1) * 0.2 * k, 0)
