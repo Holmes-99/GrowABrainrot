@@ -1109,35 +1109,20 @@ local function renderSatchel()
     emptyBtn.Visible = #state.ingredients > 0 or d ~= nil
 end
 
--- guide arrow: a glowing line from you to the current goal, plus a bouncing ⬇ over it
-local guideBeam, guideA0, guideA1, guideMark
+-- guide arrow: a bouncing ⬇ over the current goal
+local guideMark
 local function setGuideTarget(inst)
     local part = inst and (inst:IsA("BasePart") and inst or (inst:IsA("Model") and (inst.PrimaryPart or inst:FindFirstChildWhichIsA("BasePart", true))))
-    local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
-    if not guideBeam then
-        guideA1 = Instance.new("Attachment")
-        guideA1.Name = "GuideTarget"
-        guideBeam = new("Beam", { Color = ColorSequence.new(GOLD), Width0 = 0.45, Width1 = 0.45, LightEmission = 1, FaceCamera = true,
-            Transparency = NumberSequence.new(0.25), Segments = 1, Enabled = false, Parent = workspace.CurrentCamera })
+    if not guideMark then
         guideMark = new("BillboardGui", { Size = UDim2.fromOffset(70, 70), StudsOffset = Vector3.new(0, 5, 0), AlwaysOnTop = true, Enabled = false, Parent = gui })
         label({ Size = UDim2.fromScale(1, 1), Text = "⬇", TextScaled = true, TextColor3 = GOLD, TextStrokeTransparency = 0, Parent = guideMark })
         TweenService:Create(guideMark, TweenInfo.new(0.6, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true), { StudsOffset = Vector3.new(0, 6.5, 0) }):Play()
     end
-    if not part or not hrp then
-        guideBeam.Enabled = false
+    if not part then
         guideMark.Enabled = false
         return
     end
-    if not guideA0 or guideA0.Parent ~= hrp then
-        guideA0 = Instance.new("Attachment")
-        guideA0.Name = "GuideFrom"
-        guideA0.Parent = hrp
-    end
-    guideA1.Parent = part
-    guideBeam.Attachment0, guideBeam.Attachment1 = guideA0, guideA1
-    guideBeam.Parent = workspace.CurrentCamera
     guideMark.Adornee = part
-    guideBeam.Enabled = (hrp.Position - part.Position).Magnitude > 12
     guideMark.Enabled = true
 end
 
