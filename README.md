@@ -1,7 +1,7 @@
 <div align="center">
 
-<img src="<img width="1024" height="1024" alt="icon_growabrainrot" src="https://github.com/user-attachments/assets/25fc5319-5bf3-41cb-be25-bbd21708987b" />
-" width="360" alt="Grow a Brainrot key art" />
+<img width="360" height="360" alt="icon_growabrainrot" src="https://github.com/user-attachments/assets/25fc5319-5bf3-41cb-be25-bbd21708987b" />
+
 
 # 🧪 Grow a Brainrot
 
