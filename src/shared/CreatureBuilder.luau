@@ -177,8 +177,9 @@ function CreatureBuilder.BuildFromParts(parts, opts)
         local k = math.min(box.X / size.X, box.Y / size.Y, box.Z / size.Z)
         local h = size.Y * k
         lastH = h / u
-        -- slide the fitted mesh to the bottom (or top) of its box instead of floating in the middle
-        cf = cf * CFrame.new(0, (align == "top" and 1 or -1) * (box.Y - h) / 2, 0)
+        -- slide the fitted mesh to the bottom (or top) of its box instead of floating in the middle;
+        -- a template's Sink attribute pushes it further down (a fraction of its height) when its outline has empty space at the bottom
+        cf = cf * CFrame.new(0, (align == "top" and 1 or -1) * (box.Y - h) / 2 - (tpl:GetAttribute("Sink") or 0) * h, 0)
         if m:IsA("Model") then
             m:ScaleTo(m:GetScale() * k)
             m:PivotTo(cf * m:GetBoundingBox():ToObjectSpace(m:GetPivot()))
