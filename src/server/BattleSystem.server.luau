@@ -271,6 +271,7 @@ local function placeModels(b)
                 m:PivotTo(slotCFrame(b, side, i, false))
                 nameTag(m, u.name, RARITY_COLOR[u.rarity] or Color3.new(1, 1, 1))
                 m.Parent = b.folder
+                m:SetAttribute("Uid", u.uid) -- lets clients find the fighter for hit reactions
                 b.models[u.uid] = m
             end
         end

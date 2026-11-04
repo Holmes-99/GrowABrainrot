@@ -199,10 +199,24 @@ local function setLog(text)
     TweenService:Create(logBox, TweenInfo.new(0.6), { BackgroundTransparency = 0.2 }):Play()
 end
 
+-- a fighter that just lost HP flinches (CreatureAnimator watches the HitAt attribute)
+local function flinch(uid)
+    local arena = workspace:FindFirstChild("Arena")
+    local folder = arena and arena:FindFirstChild("BattleUnits")
+    if not folder then return end
+    for _, m in folder:GetChildren() do
+        if m:GetAttribute("Uid") == uid then m:SetAttribute("HitAt", os.clock()) end
+    end
+end
+
 local function applyHps(hps)
     for uid, v in hps or {} do
         local u = units[uid]
-        if u then u.hp = v.hp u.status = v.status end
+        if u then
+            if u.hp and v.hp < u.hp then flinch(uid) end
+            u.hp = v.hp
+            u.status = v.status
+        end
     end
     redraw()
 end

@@ -61,6 +61,14 @@ function CreatureBuilder.BuildFromParts(parts, opts)
     model.PrimaryPart = root
 
     local current -- slot being built (for opts.only filtering)
+    -- slot / family / rarity tags let the client animate and decorate each body part
+    local function tag(p, slot)
+        local info = slot and parts[slot]
+        if not info then return end
+        p:SetAttribute("Slot", slot)
+        p:SetAttribute("Family", info.family)
+        p:SetAttribute("Rarity", info.rarity)
+    end
     local function add(props)
         if only and current ~= only then return nil end
         local p = Instance.new("Part")
@@ -78,6 +86,7 @@ function CreatureBuilder.BuildFromParts(parts, opts)
         w.Part0 = root
         w.Part1 = p
         w.Parent = p
+        tag(p, current)
         return p
     end
     local function S(v) return v * u end
@@ -189,6 +198,7 @@ function CreatureBuilder.BuildFromParts(parts, opts)
                 w.Part0 = root
                 w.Part1 = p
                 w.Parent = p
+                tag(p, slot)
                 if not main or p.Size.Magnitude > main.Size.Magnitude then main = p end
             elseif p:IsA("Script") or p:IsA("LocalScript") then
                 p:Destroy()
@@ -630,6 +640,7 @@ function CreatureBuilder.BuildFromParts(parts, opts)
         current = nil
     end
 
+    model:SetAttribute("IsCreature", true)
     model:SetAttribute("Height", S(math.max(headTop, torsoTop + 0.3)))
     return model
 end
