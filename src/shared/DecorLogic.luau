@@ -14,6 +14,13 @@ DecorLogic.Categories = { "Epic", "Cages", "Displays", "Nature", "Lights", "Furn
 -- w/d = footprint in studs. cage = income bonus for the creature living in it.
 -- retired = no longer sold, but kept so decorations players already own still load and sell back.
 DecorLogic.Items = {
+    ArcoAngelotto  = { name = "Arco Angelotto",   cat = "Epic",      price = 800000, w = 20, d = 12, icon = "😇", desc = "A giant arch of angel wings with a spinning golden halo.", max = 2 },
+    CastelloSognarello = { name = "Castello Sognarello", cat = "Epic", price = 500000, w = 20, d = 20, icon = "🏰", desc = "A candy castle floating on a pink cloud.", max = 2 },
+    PortaleVortellino = { name = "Portale Vortellino", cat = "Epic",  price = 350000, w = 18, d = 18, icon = "🌀", desc = "A swirling void portal on a glowing plinth.", max = 2 },
+    StatuaMuscolina = { name = "Statua Muscolina", cat = "Epic",     price = 300000, w = 18, d = 16, icon = "💪", desc = "A giant marble statue flexing for the whole server.", max = 2 },
+    TronoGhiacciato = { name = "Trono Ghiacciato", cat = "Epic",     price = 250000, w = 18, d = 18, icon = "🧊", desc = "A floating cluster of giant ice crystals." },
+    TrofeoBling    = { name = "Trofeo Bling Bling", cat = "Epic",    price = 150000, w = 18, d = 18, icon = "🏆", desc = "A spinning diamond trophy with a big pink heart." },
+    TotemGremlino  = { name = "Totem Gremlino",   cat = "Epic",      price = 60000,  w = 8,  d = 8,  icon = "👹", desc = "A tall totem of three grinning gremlins." },
     PolpoSpettrale = { name = "Polpo Spettrale",  cat = "Epic",      price = 600000, w = 20, d = 20, icon = "🐙", desc = "A giant spooky octopus that floats and waves its tentacles.", max = 2 },
     TestaInfernale = { name = "Testa Infernale",  cat = "Epic",      price = 400000, w = 16, d = 16, icon = "😈", desc = "A huge demon head with burning eyes, hovering over a lava plinth.", max = 2 },
     ChaoticStill   = { name = "Alambicco Caotico", cat = "Epic",     price = 200000, w = 12, d = 6,  icon = "🌋", desc = "A giant fiery still that shakes like it's about to blow." },
@@ -46,7 +53,8 @@ DecorLogic.Items = {
 }
 
 DecorLogic.Order = {
-    "PolpoSpettrale", "TestaInfernale", "ChaoticStill", "GiantVialRack", "GiantFlask", "GiantBeaker",
+    "ArcoAngelotto", "PolpoSpettrale", "CastelloSognarello", "TestaInfernale", "PortaleVortellino", "StatuaMuscolina",
+    "TronoGhiacciato", "ChaoticStill", "TrofeoBling", "GiantVialRack", "TotemGremlino", "GiantFlask", "GiantBeaker",
     "WoodCage", "IronCage", "GoldCage", "NeonCage", "Pedestal",
     "OakTree", "PineTree",
     "StreetLamp", "HangingLantern", "GlowOrb",
