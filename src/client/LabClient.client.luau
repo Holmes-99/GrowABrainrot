@@ -137,8 +137,13 @@ local toastHolder = new("Frame", {
     Position = UDim2.new(0.5, 0, 0, 70), BackgroundTransparency = 1, ZIndex = 50, Parent = gui,
 }, { new("UIListLayout", { Padding = UDim.new(0, 6), HorizontalAlignment = Enum.HorizontalAlignment.Center, SortOrder = Enum.SortOrder.LayoutOrder }) })
 local toastN = 0
+local lastToast = {} -- text -> time shown, so repeats within a few seconds are dropped
+local MAX_TOASTS = 2
 
 local function toast(text, kind)
+    local now = os.clock()
+    if lastToast[text] and now - lastToast[text] < 5 then return end
+    lastToast[text] = now
     toastN += 1
     local col = KIND_COLOR[kind] or KIND_COLOR.info
     local t = new("Frame", {
@@ -147,11 +152,11 @@ local function toast(text, kind)
     }, { corner(10), stroke(col, 0.2, 2), pad(10) })
     local l = label({
         Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, Text = text, TextColor3 = col,
-        TextSize = 17, FontFace = BOLD, ZIndex = 51, Parent = t,
+        TextSize = 15, FontFace = BOLD, ZIndex = 51, Parent = t,
     })
     l.TextTransparency = 1
     TweenService:Create(l, TweenInfo.new(0.2), { TextTransparency = 0 }):Play()
-    task.delay(kind == "rare" and 6 or 4, function()
+    task.delay(kind == "rare" and 4.5 or 3, function()
         TweenService:Create(l, TweenInfo.new(0.4), { TextTransparency = 1 }):Play()
         TweenService:Create(t, TweenInfo.new(0.4), { BackgroundTransparency = 1 }):Play()
         task.wait(0.45)
@@ -161,9 +166,9 @@ local function toast(text, kind)
     for _, c in toastHolder:GetChildren() do
         if c:IsA("Frame") then table.insert(frames, c) end
     end
-    if #frames > 5 then
+    if #frames > MAX_TOASTS then
         table.sort(frames, function(a, b) return a.LayoutOrder < b.LayoutOrder end)
-        frames[1]:Destroy()
+        for i = 1, #frames - MAX_TOASTS do frames[i]:Destroy() end
     end
 end
 

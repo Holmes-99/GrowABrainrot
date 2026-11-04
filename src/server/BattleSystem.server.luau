@@ -837,7 +837,6 @@ if board then
     local prompt = frame and frame:FindFirstChild("WatchPrompt")
     if prompt then prompt.Triggered:Connect(watchAndBet) end
     local screen = frame and frame:FindFirstChild("Screen")
-    local announced
     task.spawn(function()
         while true do
             task.wait(1)
@@ -858,15 +857,7 @@ if board then
                     screen.Status.Text = "Tap <b>Watch &amp; Bet</b> to grab a seat. A show match starts soon!"
                 end
             end
-            -- tell everyone once per fight that bets are open
-            if b and b.betOpen and announced ~= b then
-                announced = b
-                for _, p in Players:GetPlayers() do
-                    if not b.sides[p] and not b.started[p] then
-                        LabAPI.notify(p, ("🎲 Bets open: %s vs %s! Go to the Bets board in the hub to watch and bet."):format(b.titleA or "A", b.titleB or "B"), "rare")
-                    end
-                end
-            end
+            -- the Bets board shows when bets are open; no server-wide pop-up every fight
         end
     end)
 end

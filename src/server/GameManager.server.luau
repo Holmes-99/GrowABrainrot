@@ -814,7 +814,7 @@ local function buyIngredient(player: Player, key: string)
     data.money -= cost
     table.insert(data.ingredients, key)
     local disc = shopDiscount(data) > 0 and (" (Rizz discount -%d%%)"):format(math.floor(shopDiscount(data) * 100)) or ""
-    notify(player, ("Copped %s for $%s%s. Leans %s."):format(ing.name, fmt(cost), disc, Config.SlotBias[key]:upper()), "good")
+    notify(player, ("+1 %s"):format(ing.name), "good")
     sendState(player)
 end
 
@@ -919,7 +919,7 @@ local function brew(player: Player, prompt: ProximityPrompt)
 
     cauldronFX(data.plotId, RARITY_COLOR[rarity])
     setPodVisual(data.plotId, podNum, data.pods[podId])
-    notify(player, ("The brew hit! A %s %scapsule is growing in pod %d (%ds). %d rarity roll%s."):format(rarity, draught and (slot:upper() .. " ") or "", podNum, math.ceil(grow), rolls, rolls > 1 and "s" or ""), (rarityRank(rarity) >= 4) and "rare" or "good")
+    notify(player, ("🧪 %s %scapsule · pod %d · %ds"):format(rarity, draught and (slot:upper() .. " ") or "", podNum, math.ceil(grow)), (rarityRank(rarity) >= 4) and "rare" or "good")
     sendState(player)
 end
 
@@ -958,7 +958,7 @@ local function openCapsule(player: Player, podId: string, prompt: ProximityPromp
 
     setPodVisual(data.plotId, tonumber(podId:match("_Pod(%d+)$")), nil)
     Revealed:FireClient(player, { kind = "part", part = part, isNew = isNew })
-    if rarityRank(part.rarity) >= 5 or (part.shiny and rarityRank(part.rarity) >= 3) then
+    if rarityRank(part.rarity) >= 6 then -- only Mythic pulls are announced to the server
         broadcast(("%s just pulled a %s %s!"):format(player.DisplayName, part.rarity, partName(part)), "rare", player)
     end
     sendState(player)
@@ -1026,7 +1026,7 @@ local function assemble(player: Player, picks)
     spawnCreatureModel(player, data, c)
     LabAPI.creaturesChanged:Fire(player, data)
     Revealed:FireClient(player, { kind = "creature", creature = publicCreature(data, c) })
-    if rarityRank(c.stats.rarity) >= 5 or c.stats.setCount >= 5 then
+    if rarityRank(c.stats.rarity) >= 6 then
         broadcast(("%s just built a %s %s!"):format(player.DisplayName, c.stats.rarity, c.name), "rare", player)
     end
     sendState(player)
@@ -1190,7 +1190,6 @@ local function rebirth(player: Player)
     LabAPI.creaturesChanged:Fire(player, data)
     if data.plotId then resetPlotVisuals(data.plotId) end
     notify(player, ("REBORN! Rebirth %d: all income is now x%.2f and your lab holds %d creatures."):format(data.rebirths, data.incomeMultiplier, maxCreatures(data)), "rare")
-    broadcast(("%s just rebirthed (x%.2f)!"):format(player.DisplayName, data.incomeMultiplier), "rare", player)
     sendState(player)
 end
 
@@ -1666,7 +1665,6 @@ local function joinDuel(player: Player, padName: string)
     else
         duel[other] = nil
         notify(player, "Ready! Waiting for a challenger on the other duel pad...", "info")
-        broadcast(("%s is waiting for a duel at the Ohio Colosseum!"):format(player.DisplayName), "info", player)
     end
 end
 
@@ -1978,7 +1976,6 @@ task.spawn(function()
 
         if now() >= market.refreshAt then
             refreshMarket()
-            broadcast("The Black Market just restocked.", "info")
             sendAll()
         end
 
@@ -2200,7 +2197,7 @@ LabAPI.revealPart = function(player, data, part)
     local isNew = data.discoveries[key] == nil
     data.discoveries[key] = math.max(data.discoveries[key] or 0, rarityRank(part.rarity))
     Revealed:FireClient(player, { kind = "part", part = part, isNew = isNew })
-    if rarityRank(part.rarity) >= 5 then
+    if rarityRank(part.rarity) >= 6 then
         broadcast(("%s just pulled a %s %s!"):format(player.DisplayName, part.rarity, partName(part)), "rare", player)
     end
 end
