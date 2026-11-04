@@ -46,20 +46,20 @@ Your creatures earn cash on pedestals in your yard. Spend it on bigger labs, rar
 | | |
 |---|---|
 | 🧪 | **8 potion families**: Sigma, Ohio, Skibidi, Rizz, Fanum, Mewing, Aura, Delulu, each with its own color, perks and part designs |
-| 🥚 | Brew 2+ elixirs into a capsule, then wait for it to hatch in your incubator pods |
-| 🧩 | **5 part slots** (Head, Torso, Arms, Legs, Weapon) and **6 rarities** from Common to Mythic, plus 5% shiny parts |
-| 🧬 | 3D-modeled parts for every family. Legendary and Mythic heads get special models, like the flaming skull |
+| | Brew 2+ elixirs into a capsule, then wait for it to hatch in your incubator pods |
+|| **5 part slots** (Head, Torso, Arms, Legs, Weapon) and **6 rarities** from Common to Mythic, plus 5% shiny parts |
+|| 3D-modeled parts for every family. Legendary and Mythic heads get special models, like the flaming skull |
 | 💰 | Cash pedestals in your yard that fill up over time. Step on a pad to collect |
-| 🏡 | Yard decor shop with free placement, plus VIP-only decorations |
-| ⬆️ | Lab upgrades: extra pods and an auto-stirrer. **Rebirth** for a permanent cash multiplier |
-| 🌱 | Growth Potions (+20% size, +35% cash per level), Legendary Wings, and creature naming with a chat filter |
-| ⚔️ | **Turn-based battles with a timing bar** (PERFECT / GREAT / GOOD) against wild brainrots, in duels, or in a ranked queue |
-| 🎲 | Show matches while the arena is idle, with live odds and in-game cash bets from the stands |
-| 🤝 | Two-player trading of creatures, parts and cash, where both players must ready up |
-| 🛒 | Robux game passes and developer products, plus a 7-day daily reward streak |
-| 🎵 | Calm looping background music |
-| 💾 | Progress saved with DataStoreService |
-| 📱 | UI that scales down for phones and tablets |
+|| Yard decor shop with free placement, plus VIP-only decorations |
+| Lab upgrades: extra pods and an auto-stirrer. **Rebirth** for a permanent cash multiplier |
+| Growth Potions (+20% size, +35% cash per level), Legendary Wings, and creature naming with a chat filter |
+|| **Turn-based battles with a timing bar** (PERFECT / GREAT / GOOD) against wild brainrots, in duels, or in a ranked queue |
+|| Show matches while the arena is idle, with live odds and in-game cash bets from the stands |
+|| Two-player trading of creatures, parts and cash, where both players must ready up |
+|| Robux game passes and developer products, plus a 7-day daily reward streak |
+|| Calm looping background music |
+|| Progress saved with DataStoreService |
+|| UI that scales down for phones and tablets |
 
 ## 🕹️ Controls
 
