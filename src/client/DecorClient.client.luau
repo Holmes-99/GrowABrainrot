@@ -28,7 +28,7 @@ local item = nil        -- item id being placed/moved
 local moving = nil      -- decor entry being moved
 local target = { x = 0, z = 40, r = 0 }
 local ghost, highlight
-local category = "Cages"
+local category = "Epic"
 
 -------------------------------------------------
 -- UI
@@ -258,7 +258,7 @@ end)
 local function renderCatalog()
     UIKit.clear(tabs)
     for i, cat in DecorLogic.Categories do
-        local b = button({ Size = UDim2.fromOffset(cat == "VIP" and 86 or 104, 28), Text = (cat == "VIP" and "⭐ " or "") .. cat, TextSize = 15, LayoutOrder = i,
+        local b = button({ Size = UDim2.fromOffset(cat == "VIP" and 86 or 104, 28), Text = (cat == "VIP" and "⭐ " or cat == "Epic" and "🔥 " or "") .. cat, TextSize = 15, LayoutOrder = i,
             BackgroundColor3 = cat == category and GOLD or PANEL3, TextColor3 = cat == category and UIKit.DARKTEXT or WHITE, Parent = tabs })
         b.Activated:Connect(function()
             category = cat

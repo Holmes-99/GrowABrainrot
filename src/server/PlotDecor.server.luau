@@ -235,7 +235,7 @@ LabAPI.requests.PlaceDecor = function(player, arg)
     local x, z, r = cleanArgs(arg)
     local item = typeof(arg) == "table" and arg.item
     local it = Items[item]
-    if not (x and it) then return end
+    if not (x and it) or it.retired then return end
     x, z = DecorLogic.snap(item, r, x, z)
     if #data.decor >= DecorLogic.MaxItems then
         LabAPI.notify(player, ("Your lab is full of decorations (%d max). Sell some first."):format(DecorLogic.MaxItems), "bad")

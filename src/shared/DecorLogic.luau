@@ -9,10 +9,17 @@
 
 local DecorLogic = {}
 
-DecorLogic.Categories = { "Cages", "Displays", "Nature", "Lights", "Furniture", "VIP" }
+DecorLogic.Categories = { "Epic", "Cages", "Displays", "Nature", "Lights", "Furniture", "VIP" }
 
 -- w/d = footprint in studs. cage = income bonus for the creature living in it.
+-- retired = no longer sold, but kept so decorations players already own still load and sell back.
 DecorLogic.Items = {
+    PolpoSpettrale = { name = "Polpo Spettrale",  cat = "Epic",      price = 600000, w = 20, d = 20, icon = "🐙", desc = "A giant spooky octopus that floats and waves its tentacles.", max = 2 },
+    TestaInfernale = { name = "Testa Infernale",  cat = "Epic",      price = 400000, w = 16, d = 16, icon = "😈", desc = "A huge demon head with burning eyes, hovering over a lava plinth.", max = 2 },
+    ChaoticStill   = { name = "Alambicco Caotico", cat = "Epic",     price = 200000, w = 12, d = 6,  icon = "🌋", desc = "A giant fiery still that shakes like it's about to blow." },
+    GiantVialRack  = { name = "Provettone Reale", cat = "Epic",      price = 90000,  w = 10, d = 10, icon = "👑", desc = "A giant rack of royal sparkling vials." },
+    GiantFlask     = { name = "Fiascone Viola",   cat = "Epic",      price = 40000,  w = 8,  d = 8,  icon = "🧪", desc = "A giant glowing potion flask." },
+    GiantBeaker    = { name = "Becher Gigante",   cat = "Epic",      price = 15000,  w = 10, d = 10, icon = "⚗️", desc = "A giant bubbling beaker." },
     WoodCage       = { name = "Wooden Pen",      cat = "Cages",     price = 2500,   w = 10, d = 10, cage = 0.10, icon = "🌾", desc = "A home for one creature. +10% cash for it." },
     IronCage       = { name = "Iron Cage",       cat = "Cages",     price = 20000,  w = 10, d = 10, cage = 0.25, icon = "⛓️", desc = "+25% cash for the creature inside." },
     GoldCage       = { name = "Golden Cage",     cat = "Cages",     price = 150000, w = 10, d = 10, cage = 0.50, icon = "👑", desc = "+50% cash for the creature inside." },
@@ -20,16 +27,16 @@ DecorLogic.Items = {
     Pedestal       = { name = "Trophy Pedestal", cat = "Displays",  price = 6000,   w = 4,  d = 4,  icon = "🏆", desc = "Shows off your rarest spare part.", max = 8 },
     OakTree        = { name = "Oak Tree",        cat = "Nature",    price = 600,    w = 10, d = 10, icon = "🌳" },
     PineTree       = { name = "Pine Tree",       cat = "Nature",    price = 500,    w = 6,  d = 6,  icon = "🌲" },
-    BirchTree      = { name = "Birch Tree",      cat = "Nature",    price = 400,    w = 4,  d = 4,  icon = "🌿" },
-    BigBush        = { name = "Big Bush",        cat = "Nature",    price = 300,    w = 6,  d = 6,  icon = "🌱" },
-    FlowerBush     = { name = "Flower Bush",     cat = "Nature",    price = 200,    w = 4,  d = 4,  icon = "🌸" },
-    FlowerBed      = { name = "Flower Bed",      cat = "Nature",    price = 250,    w = 4,  d = 4,  icon = "🌼" },
-    Hedge          = { name = "Hedge",           cat = "Nature",    price = 350,    w = 6,  d = 2,  icon = "🟩" },
+    BirchTree      = { name = "Birch Tree",      cat = "Nature",    price = 400,    w = 4,  d = 4,  icon = "🌿", retired = true },
+    BigBush        = { name = "Big Bush",        cat = "Nature",    price = 300,    w = 6,  d = 6,  icon = "🌱", retired = true },
+    FlowerBush     = { name = "Flower Bush",     cat = "Nature",    price = 200,    w = 4,  d = 4,  icon = "🌸", retired = true },
+    FlowerBed      = { name = "Flower Bed",      cat = "Nature",    price = 250,    w = 4,  d = 4,  icon = "🌼", retired = true },
+    Hedge          = { name = "Hedge",           cat = "Nature",    price = 350,    w = 6,  d = 2,  icon = "🟩", retired = true },
     StreetLamp     = { name = "Street Lamp",     cat = "Lights",    price = 900,    w = 4,  d = 4,  icon = "💡" },
     HangingLantern = { name = "Lantern Post",    cat = "Lights",    price = 700,    w = 6,  d = 2,  icon = "🏮" },
     GlowOrb        = { name = "Glow Orb",        cat = "Lights",    price = 1500,   w = 2,  d = 2,  icon = "🔮" },
-    Bench          = { name = "Bench",           cat = "Furniture", price = 600,    w = 6,  d = 2,  icon = "💺" },
-    PathTile       = { name = "Stone Tile",      cat = "Furniture", price = 60,     w = 4,  d = 4,  icon = "⬜" },
+    Bench          = { name = "Bench",           cat = "Furniture", price = 600,    w = 6,  d = 2,  icon = "💺", retired = true },
+    PathTile       = { name = "Stone Tile",      cat = "Furniture", price = 60,     w = 4,  d = 4,  icon = "⬜", retired = true },
     Fountain       = { name = "Fountain",        cat = "Furniture", price = 12000,  w = 10, d = 10, icon = "⛲" },
     AlchemyTable   = { name = "Alchemy Table",   cat = "Furniture", price = 3500,   w = 8,  d = 6,  icon = "⚗️" },
     PotionShelf    = { name = "Potion Shelf",    cat = "Furniture", price = 2500,   w = 4,  d = 6,  icon = "🧪" },
@@ -39,10 +46,11 @@ DecorLogic.Items = {
 }
 
 DecorLogic.Order = {
+    "PolpoSpettrale", "TestaInfernale", "ChaoticStill", "GiantVialRack", "GiantFlask", "GiantBeaker",
     "WoodCage", "IronCage", "GoldCage", "NeonCage", "Pedestal",
-    "OakTree", "PineTree", "BirchTree", "BigBush", "FlowerBush", "FlowerBed", "Hedge",
+    "OakTree", "PineTree",
     "StreetLamp", "HangingLantern", "GlowOrb",
-    "Bench", "PathTile", "Fountain", "AlchemyTable", "PotionShelf",
+    "Fountain", "AlchemyTable", "PotionShelf",
     "RoyalCage", "GoldenStatue", "DreamCrystal",
 }
 
