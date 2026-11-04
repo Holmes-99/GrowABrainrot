@@ -232,23 +232,38 @@ end
 -------------------------------------------------
 -- HUD
 -------------------------------------------------
+-- starts folded to just the cash line; tapping it drops down the rest (small screens need the room)
+local HUD_OPEN_W, HUD_SHUT_W = 300, 200
 local hud = new("Frame", {
-    Name = "HUD", Size = UDim2.fromOffset(300, 0), AutomaticSize = Enum.AutomaticSize.Y, Position = UDim2.new(0, 14, 0, 14),
+    Name = "HUD", Size = UDim2.fromOffset(HUD_SHUT_W, 0), AutomaticSize = Enum.AutomaticSize.Y, Position = UDim2.new(0, 14, 0, 14),
     BackgroundColor3 = PANEL, BackgroundTransparency = 0.15, Parent = gui,
 }, { corner(14), stroke(GOLD, 0.45, 2), pad(12), new("UIListLayout", { Padding = UDim.new(0, 6), SortOrder = Enum.SortOrder.LayoutOrder }) })
 
-local moneyLabel = label({ Size = UDim2.new(1, 0, 0, 34), Text = "$0", TextColor3 = GOLD, FontFace = HEAD, TextSize = 32, TextXAlignment = Enum.TextXAlignment.Left, LayoutOrder = 1, Parent = hud })
+local hudHeader = new("Frame", { Size = UDim2.new(1, 0, 0, 34), BackgroundTransparency = 1, LayoutOrder = 1, Parent = hud })
+local moneyLabel = label({ Size = UDim2.new(1, -26, 1, 0), Text = "$0", TextColor3 = GOLD, FontFace = HEAD, TextSize = 32, TextXAlignment = Enum.TextXAlignment.Left, Parent = hudHeader })
+local hudArrow = label({ Size = UDim2.new(0, 24, 1, 0), Position = UDim2.new(1, -24, 0, 0), Text = "▼", TextColor3 = GOLD, FontFace = HEAD, TextSize = 18, Parent = hudHeader })
 local incomeLabel = label({ Size = UDim2.new(1, 0, 0, 18), Text = "", TextColor3 = KIND_COLOR.good, FontFace = BOLD, TextSize = 14, TextXAlignment = Enum.TextXAlignment.Left, LayoutOrder = 2, Parent = hud })
-local statsLabel = label({ Size = UDim2.new(1, 0, 0, 16), Text = "", TextColor3 = MUTED, TextSize = 13, TextXAlignment = Enum.TextXAlignment.Left, LayoutOrder = 3, Parent = hud })
 
-local satchelTitle = label({ Size = UDim2.new(1, 0, 0, 18), Text = "SATCHEL", TextColor3 = MUTED, FontFace = HEAD, TextSize = 15, TextXAlignment = Enum.TextXAlignment.Left, LayoutOrder = 4, Parent = hud })
-local satchel = new("Frame", { Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1, LayoutOrder = 5, Parent = hud },
+local hudDetails = new("Frame", { Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1, LayoutOrder = 3, Visible = false, Parent = hud },
+    { new("UIListLayout", { Padding = UDim.new(0, 6), SortOrder = Enum.SortOrder.LayoutOrder }) })
+local statsLabel = label({ Size = UDim2.new(1, 0, 0, 16), Text = "", TextColor3 = MUTED, TextSize = 13, TextXAlignment = Enum.TextXAlignment.Left, LayoutOrder = 3, Parent = hudDetails })
+
+local satchelTitle = label({ Size = UDim2.new(1, 0, 0, 18), Text = "SATCHEL", TextColor3 = MUTED, FontFace = HEAD, TextSize = 15, TextXAlignment = Enum.TextXAlignment.Left, LayoutOrder = 4, Parent = hudDetails })
+local satchel = new("Frame", { Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1, LayoutOrder = 5, Parent = hudDetails },
     { new("UIGridLayout", { CellSize = UDim2.fromOffset(52, 24), CellPadding = UDim2.fromOffset(4, 4), SortOrder = Enum.SortOrder.LayoutOrder }) })
-local emptyBtn = button({ Size = UDim2.new(1, 0, 0, 26), Text = "Empty satchel (50% refund)", TextSize = 14, BackgroundColor3 = PANEL2, TextColor3 = MUTED, LayoutOrder = 6, Parent = hud }, function()
+local emptyBtn = button({ Size = UDim2.new(1, 0, 0, 26), Text = "Empty satchel (50% refund)", TextSize = 14, BackgroundColor3 = PANEL2, TextColor3 = MUTED, LayoutOrder = 6, Parent = hudDetails }, function()
     Request:FireServer("EmptySatchel")
 end)
 
-local objective = new("Frame", { Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundColor3 = PANEL2, LayoutOrder = 7, Parent = hud }, { corner(10), pad(8) })
+local objective = new("Frame", { Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundColor3 = PANEL2, LayoutOrder = 7, Parent = hudDetails }, { corner(10), pad(8) })
+
+local hudOpen = false
+new("TextButton", { Size = UDim2.new(1, 0, 0, 52), BackgroundTransparency = 1, Text = "", ZIndex = 5, Parent = hudHeader }).Activated:Connect(function()
+    hudOpen = not hudOpen
+    hudDetails.Visible = hudOpen
+    hudArrow.Text = hudOpen and "▲" or "▼"
+    hud.Size = UDim2.fromOffset(hudOpen and HUD_OPEN_W or HUD_SHUT_W, 0)
+end)
 local objectiveLabel = label({ Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, Text = "", TextColor3 = WHITE, FontFace = BOLD, TextSize = 14, TextXAlignment = Enum.TextXAlignment.Left, RichText = true, Parent = objective })
 
 local menu = new("Frame", {
