@@ -286,17 +286,18 @@ Config.SlotBias = {
     Delulu = "Any", -- random slot
 }
 
+-- part names in the same pseudo-Italian brainrot style as the creature names
 Config.PartNames = {
-    Head   = { Sigma = "Sigma Visor",     Ohio = "Ohio Skull",     Skibidi = "Skibidi Noggin",  Rizz = "Rizz Crown",      Fanum = "Fanum Jaw",
-               Mewing = "Mog Jaw",        Aura = "Halo Head",      Delulu = "Dream Bubble" },
-    Torso  = { Sigma = "Grindset Suit",   Ohio = "Void Core",      Skibidi = "Porcelain Tank",  Rizz = "Drip Hoodie",     Fanum = "Snack Belly",
-               Mewing = "Gym Chest",      Aura = "Seraph Robe",    Delulu = "Candy Cloud" },
-    Arms   = { Sigma = "Executive Arms",  Ohio = "Shadow Claws",   Skibidi = "Plunger Arms",    Rizz = "Iced-Out Grips",  Fanum = "Grabber Mitts",
-               Mewing = "Flex Arms",      Aura = "Lightweaver Hands", Delulu = "Noodle Arms" },
-    Legs   = { Sigma = "Oxford Striders", Ohio = "Void Tendrils",  Skibidi = "Throne Base",     Rizz = "Drip Kicks",      Fanum = "Stomper Paws",
-               Mewing = "Squat Legs",     Aura = "Cloud Float",    Delulu = "Boing Springs" },
-    Weapon = { Sigma = "Briefcase",       Ohio = "Void Blade",     Skibidi = "Plunger Cannon",  Rizz = "Heartbreaker",    Fanum = "Tax Fork",
-               Mewing = "Iron Dumbbell",  Aura = "Halo Orb Staff", Delulu = "Lollipop Mace" },
+    Head   = { Sigma = "Testa Ghiacciolo",   Ohio = "Teschio Vortello",     Skibidi = "Gremlo Capoccia",  Rizz = "Corona Bling Bling", Fanum = "Boccone Gnam",
+               Mewing = "Mascellone",         Aura = "Aureolo Testolino",    Delulu = "Bolla Sognella" },
+    Torso  = { Sigma = "Pancia Frigorina",   Ohio = "Cuore Spettrolo",      Skibidi = "Corazza Crimsona", Rizz = "Felpa Drippetta",    Fanum = "Pancione Panzerotto",
+               Mewing = "Petto Muscolino",    Aura = "Tunica Angelotta",     Delulu = "Nuvola Zuccherina" },
+    Arms   = { Sigma = "Braccia Ghiacciate", Ohio = "Artigli Spettrali",    Skibidi = "Pinze Gremline",   Rizz = "Braccialetti Bling", Fanum = "Manone Gnam",
+               Mewing = "Bicipiti Flexini",   Aura = "Manine Aureoline",     Delulu = "Spaghetti Braccini" },
+    Legs   = { Sigma = "Scarpe Frigorine",   Ohio = "Tentacoli Vortellini", Skibidi = "Zampe Saltarelle", Rizz = "Sneakerini Drip",    Fanum = "Zampone Stomp",
+               Mewing = "Gambe Squattini",    Aura = "Nuvoletta Volante",    Delulu = "Molle Boing Boing" },
+    Weapon = { Sigma = "Valigetta Bonk",     Ohio = "Lama Spettrola",       Skibidi = "Cannone Splash",   Rizz = "Spezzacuori",        Fanum = "Forchettone",
+               Mewing = "Manubrio Pesante",   Aura = "Bastone Aureolo",      Delulu = "Lecca Lecca Mazza" },
 }
 
 -- the special ability each part brings (heads + torsos give lab quirks, weapons give battle moves)
@@ -324,7 +325,7 @@ Config.PartPerks = {
     Arms = {
         Sigma   = { icon = "🤝", title = "Closer",     desc = "+15% ATK." },
         Ohio    = { icon = "🎣", title = "Rend",       desc = "+10% crit chance." },
-        Skibidi = { icon = "🚽", title = "Suction",    desc = "+10% ATK and steals 5% enemy speed." },
+        Skibidi = { icon = "🐙", title = "Suction",    desc = "+10% ATK and steals 5% enemy speed." },
         Rizz    = { icon = "💎", title = "Flex",       desc = "+5% income." },
         Fanum   = { icon = "🧲", title = "Grab",       desc = "+20% ATK on the first hit." },
         Mewing  = { icon = "💪", title = "Flex",       desc = "+25% ATK." },
@@ -334,7 +335,7 @@ Config.PartPerks = {
     Legs = {
         Sigma   = { icon = "👞", title = "Power Walk", desc = "+2 speed." },
         Ohio    = { icon = "👻", title = "Phase",      desc = "Dodges the first hit it takes." },
-        Skibidi = { icon = "🚽", title = "Throne",     desc = "+25% HP but -1 speed." },
+        Skibidi = { icon = "🧱", title = "Iron Stance", desc = "+25% HP but -1 speed." },
         Rizz    = { icon = "👟", title = "Drip Dash",  desc = "+3 speed." },
         Fanum   = { icon = "🐾", title = "Stomp",      desc = "+1 speed and +10% HP." },
         Mewing  = { icon = "🏃", title = "Leg Day",    desc = "+15% HP and +1 speed." },
@@ -344,7 +345,7 @@ Config.PartPerks = {
     Weapon = {
         Sigma   = { icon = "💼", title = "Briefcase Bash", desc = "25% chance to crit for 2x." },
         Ohio    = { icon = "🗡️", title = "Backstab",       desc = "Its first hit deals 2x (ambush)." },
-        Skibidi = { icon = "💦", title = "Splash Flush",   desc = "Every hit splashes 35% damage onto the other enemies." },
+        Skibidi = { icon = "💦", title = "Splash Zone",    desc = "Every hit splashes 35% damage onto the other enemies." },
         Rizz    = { icon = "💘", title = "Heartbreaker",   desc = "20% chance to charm the target into skipping a turn." },
         Fanum   = { icon = "🍴", title = "Tax Fork",       desc = "Steals 30% of the damage as HP." },
         Mewing  = { icon = "🏋️", title = "Heavy Set",      desc = "15% crit chance and +20% ATK on the first hit." },

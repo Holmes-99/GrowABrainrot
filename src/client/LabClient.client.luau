@@ -285,8 +285,8 @@ local DIALOGUE = {
     },
     perks = {
         pages = {
-            "HEADS give the big lab quirk. Fanum Jaw raids rival labs and steals cash. Ohio Skull does it in disguise. Sigma Visor earns +50%. Rizz Crown gets you shop discounts. Skibidi Noggin hypes your whole lab.",
-            "TORSOS: Void Core blocks raids, Grindset Suit speeds up brewing, Porcelain Tank gives you extra rarity rolls. ARMS, LEGS and WEAPONS are all about battle: crits, ambushes, splash, charm and life-steal.",
+            "HEADS give the big lab quirk. Boccone Gnam raids rival labs and steals cash. Teschio Vortello does it in disguise. Testa Ghiacciolo earns +50%. Corona Bling Bling gets you shop discounts. Gremlo Capoccia hypes your whole lab.",
+            "TORSOS: Cuore Spettrolo blocks raids, Pancia Frigorina speeds up brewing, Corazza Crimsona gives you extra rarity rolls. ARMS, LEGS and WEAPONS are all about battle: crits, ambushes, splash, charm and life-steal.",
             "Three parts of one family give a set bonus. All five? That's a PURE creature: +50% everything and a fancy aura.",
         },
         choices = { { "How do I get parts?", "brew" }, { "Battles?", "battle" }, { "Got it", "bye" } },
