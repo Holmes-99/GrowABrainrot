@@ -19,11 +19,11 @@ function PartsLogic.creatureName(parts)
     local fams = {}
     for _, p in parts do fams[p.family] = (fams[p.family] or 0) + 1 end
     for fam, k in fams do
-        if k >= 5 then return Config.PureNames[fam] end
+        if k >= 5 then return Config.BrainrotPure[fam] end
     end
     local h = parts.Head and parts.Head.family or parts.Torso.family
     local t = parts.Torso and parts.Torso.family or h
-    return Config.NamePrefix[h] .. " " .. Config.NameSuffix[t]
+    return Config.BrainrotFirst[h] .. " " .. Config.BrainrotLast[t]
 end
 
 function PartsLogic.analyze(parts)

@@ -659,7 +659,7 @@ local function applySave(data, s, plotId)
         end
         if ok then
             c.stats = analyze(c.parts)
-            c.name = c.name or creatureName(c.parts)
+            if not c.named then c.name = creatureName(c.parts) end -- auto names follow the current name tables
             c.nextRaid = os.clock() + 30
             table.insert(data.creatures, c)
         end

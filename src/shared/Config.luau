@@ -353,11 +353,18 @@ Config.PartPerks = {
     },
 }
 
--- the creature name is built from its head + torso families
+-- family labels shown on cards
 Config.NamePrefix = { Sigma = "Sigma", Ohio = "Ohio", Skibidi = "Skibidi", Rizz = "Rizzler", Fanum = "Fanum", Mewing = "Mewing", Aura = "Aura", Delulu = "Delulu" }
-Config.NameSuffix = { Sigma = "Executive", Ohio = "Wraith", Skibidi = "Menace", Rizz = "Drip Lord", Fanum = "Chomper", Mewing = "Mogger", Aura = "Seraph", Delulu = "Daydreamer" }
-Config.PureNames  = { Sigma = "Sigma Overlord", Ohio = "Ohio Final Boss", Skibidi = "Skibidi Emperor", Rizz = "Rizz God", Fanum = "Fanum Tax Collector",
-                      Mewing = "Jawline Titan", Aura = "Aura Farmer Supreme", Delulu = "Delulu Dream Queen" }
+
+-- creature names, in sing-song pseudo-Italian brainrot style:
+-- first word from the head's family, second from the torso's, and a chant for a full set
+Config.BrainrotFirst = { Sigma = "Frigorino", Ohio = "Vortellino", Skibidi = "Gremlino", Rizz = "Brillantino", Fanum = "Gnam Gnam",
+                         Mewing = "Mascellone", Aura = "Aureolino", Delulu = "Sognarello" }
+Config.BrainrotLast  = { Sigma = "Ghiacciolini", Ohio = "Spettrolo", Skibidi = "Saltarello", Rizz = "Dripperoni", Fanum = "Panzerotto",
+                         Mewing = "Muscolino", Aura = "Angelotto", Delulu = "Nuvolina" }
+Config.BrainrotPure  = { Sigma = "Brivido Brivido Frigorino", Ohio = "Bumba Bumba Vortellino", Skibidi = "Skrrt Skrrt Gremlino",
+                         Rizz = "Bling Bling Dripperoni", Fanum = "Gnam Gnam Gnam Panzerotto", Mewing = "Fuoco Fuoco Mascellone",
+                         Aura = "Ding Ding Aureolino", Delulu = "Lalala Sognarella" }
 
 -- how strong a part of each rarity is (multiplies its stats)
 Config.RarityPower = { Common = 1, Uncommon = 1.5, Rare = 2.3, Epic = 3.5, Legendary = 5.5, Mythic = 9 }
