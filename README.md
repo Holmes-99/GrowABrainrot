@@ -49,6 +49,9 @@ Your creatures earn cash on pedestals in your yard. Spend it on bigger labs, rar
 | | Brew 2+ elixirs into a capsule, then wait for it to hatch in your incubator pods |
 || **5 part slots** (Head, Torso, Arms, Legs, Weapon) and **6 rarities** from Common to Mythic, plus 5% shiny parts |
 || 3D-modeled parts for every family. Legendary and Mythic heads get special models, like the flaming skull |
+|| Living creatures: they breathe, bob, wobble their heads, waddle when they walk, lunge in battle and flinch when hit |
+|| Family effects that come off every creature (icy sparkles, void smoke, embers, bubbles, halos), plus real fire on the flaming skull |
+|| Sing-song brainrot names built from the head and torso, like *Gnam Gnam Dripperoni* or *Fuoco Fuoco Mascellone* |
 | 💰 | Cash pedestals in your yard that fill up over time. Step on a pad to collect |
 || Yard decor shop with free placement, plus VIP-only decorations |
 | Lab upgrades: extra pods and an auto-stirrer. **Rebirth** for a permanent cash multiplier |
@@ -119,6 +122,7 @@ GrowABrainrot/
 | `shared/ShopConfig.luau` | Robux item list with IDs and prices |
 | `client/LabClient.client.luau` | Main HUD, inventory, creature cards, guide arrow and reveal moments |
 | `client/BattleClient.client.luau` | Battle HUD, move picker, timing bar, spectator camera and bet panel |
+| `client/CreatureAnimator.client.luau` | Rigs every creature with joints on the client and drives its idle, walk, lunge and hit motion plus family effects |
 
 ## 🚀 Getting Started
 
@@ -149,7 +153,8 @@ Everything else in the place (the map, models and meshes) stays untouched, becau
 - [x] Player trading
 - [x] Robux shop and daily rewards
 - [x] Published on Roblox
-- [ ] Animated creatures: idle motion, attack moves and family effects (fire, sparkles, smoke)
+- [x] Animated creatures: idle motion, attack moves and family effects (fire, sparkles, smoke)
+- [x] Brainrot-style creature names
 - [ ] More parts and creature families
 - [ ] Weekend events and limited parts
 - [ ] Open to all ages
